@@ -1,0 +1,60 @@
+package oops_p;
+
+import java.util.Arrays;
+
+public class Exam { //시험 결과를 나타내는 클래스
+
+	String name, grade; 
+	int [] jum; //점수
+	int tot, avg, rank;
+	
+	public Exam(String name, String ... jum) {  //Exam 객체를 생성하는 생성자 - 이름과 점수를 가변인수로 받음
+		super();
+		this.name = name;
+		this.jum = new int [jum.length]; //jum 배열을 생성된 점수 개수로 초기화함
+		
+		for(int i=0; i<jum.length; i++) {
+			this.jum[i] = Integer.parseInt(jum[i]);
+			
+		}
+		calc(); //jum배열의 점수를 기반으로 총점(tot)과 평균 점수(avg)를 계산
+	}
+	
+	void calc() {
+		tot = 0;
+		for(int i : jum) {
+			tot += i;
+		}
+		
+		avg = tot/jum.length;
+		
+		//grade가 10개 -> ex)83/10 = 8 ...3
+		grade = "가가가가가양미우수수".charAt(avg/10)+"";
+		//평균 점수를 10으로 나눈값을 등급으로 결정
+		grade[1] = avg; // 평균을 1번 인덱스에 저장
+        scores[3] = grade; // 등급을 3번 인덱스에 저장
+		
+	}
+	
+	//Exam 객체를 exArr배열에 저장된 모든 Exam 객체와 비교하여 
+	//현재 객체의 등수를 계산하는 데 사용된다
+	void rankCalc(Exam [] exArr) {
+		rank = 1;  //현재 객체의 등수를 초기값 1로 설정
+		for(Exam you : exArr) { //평균 점수 비교
+			if(avg < you.avg) { 
+				rank++;
+			}		
+		}
+	}
+
+	@Override
+	public String toString() { //Exam 객체의 문자열 표현을 제공하기 위해 오버라이드됨
+		return "Exam [name=" + name + ", jum=" + Arrays.toString(jum) + ", tot=" + tot + ", avg=" + avg + ", grade="
+				+ grade + ", rank=" + rank + "]"; //포맷된 문자열을 반환
+	}
+	
+	
+	
+	
+	
+}

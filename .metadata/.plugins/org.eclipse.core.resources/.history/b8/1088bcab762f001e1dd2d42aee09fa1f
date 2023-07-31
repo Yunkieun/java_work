@@ -1,0 +1,93 @@
+<%@page import="java.util.Random"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>examForm</title>
+<script type="text/javascript">
+	function cntChange(){
+		
+		qwer.action="?"
+		qwer.submit()
+	}
+</script>
+</head>
+<body>
+<h1>examForm</h1>
+<%
+	Random rd = new Random();
+	String [] pnames = "한가인,두가인,삼가인,사가인,오가인,강아쥐,고냥이,햄쮜".split(",");
+%>
+<%
+
+	int cnt = 5;
+
+	if(request.getParameter("cnt")!=null){
+		cnt = Integer.parseInt(request.getParameter("cnt"));
+	}
+%>  
+<form action="examReg2.jsp" name="qwer">
+	<table border="">
+	
+		<tr>
+			<td colspan="2" align="right">
+				칸수:
+				<select name="cnt" id="" onchange="cntChange()">
+				<%  for(int i = 5; i<=30 ; i+=5){ 
+					String sel = "";
+					
+					if(i==cnt){
+						sel = "selected";
+					}
+					
+				%>
+					<option <%=sel %> ><%=i %></option>
+					
+					<%} %>
+				</select>
+			</td>
+		</tr>
+	
+	
+		<% for(int i = 0; i<cnt ; i++){ %>
+		<tr>
+			<td><%=i %></td>
+			<td><input type="text" name="no" value="<%=(int)(Math.random()*100)+10	%>" /></td>
+		</tr>
+		<%} %>
+		<tr>
+			<td colspan="2" align="center">
+				<input type="submit" value="계산" />
+			</td>
+		</tr>
+		<tr>
+			<td>이름</td>
+			<td>국어</td>
+			<td>영어</td>
+			<td>수학</td>
+			<td>사회</td>
+			<td>과학</td>
+		</tr>
+<c:forEach var="pp"  items="<%=pnames %>">		
+		<tr>
+			<td><input type="text" name="pname"  value="${pp }"/></td>
+			<td><input type="text" name="kor" value="<%=rd.nextInt(40,100) %>" /></td>
+			<td><input type="text" name="eng" value="<%=rd.nextInt(40,100) %>" /></td>
+			<td><input type="text" name="mat"  value="<%=rd.nextInt(40,100) %>"/></td>
+			<td><input type="text" name="soc"  value="<%=rd.nextInt(40,100) %>"/></td>
+			<td><input type="text" name="sci"  value="<%=rd.nextInt(40,100) %>"/></td>
+		</tr>
+</c:forEach>
+		<tr>
+			<td colspan="7" align="right">
+			<input type="submit" value="계산" /></td>
+		</tr>
+
+	</table>
+</form>
+
+</body>
+</html>

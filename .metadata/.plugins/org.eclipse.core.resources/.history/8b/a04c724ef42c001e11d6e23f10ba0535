@@ -1,0 +1,18 @@
+package oops_p;
+
+class AAA{
+	int a = 10;
+	int b = 20;
+	int sa = 1111;
+	
+	
+}
+
+public class InstanceMain {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
