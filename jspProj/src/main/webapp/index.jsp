@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h1>jspProj 입니다.</h1>
-	<h1>basic</h1>
+	<h2>basic</h2>
 	<a href="basic/First">서블릿진입</a>
 	<a href="basic/03_third.jsp">03_third</a>
 	<a href="basic/04_page.jsp">04_page</a>
@@ -20,6 +20,13 @@
 	<a href="err/ccc.jsp">500</a>
 	<a href="err/ddd.jsp">404</a>
 	<a href="err/eee.jsp">type</a>
+	<h2>view</h2>
+	<a href="redirect/a.jsp?nick=ccc">redirect</a>
+	<a href="forward/a.jsp?nick=ccc">forward</a>
+	<a href="include/a.jsp?nick=ccc">include</a>
+	
+	<h2>ex</h2>
+	<a href="redirect2/p.jsp?nick=ccc">redirect</a>
 </body>
 </body>
 </html>
