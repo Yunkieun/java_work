@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ser_p.BList;
-
 /**
  * Servlet implementation class BoardController
  */
@@ -32,7 +30,7 @@ public class BoardController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		//System.out.println(request.getRequestURL());
+		//System.out.println(request.getRequestURI());
 		//System.out.println(request.getContextPath()+"/board/");
 		
 		String serviceStr = request.getRequestURI().substring(
@@ -41,11 +39,16 @@ public class BoardController extends HttpServlet {
 		System.out.println(serviceStr);
 		
 		try {
+			
+			request.setCharacterEncoding("UTF-8");
+			request.setAttribute("mainPage", serviceStr);
+			
 			BoardService service = (BoardService)Class.forName("ser_p."+serviceStr).newInstance();
 			service.execute(request,response);
 			
 			
-			request.setAttribute("mainPage", serviceStr);
+			
+			
 			
 			RequestDispatcher dispatcher = 
 					request.getRequestDispatcher("/views/template.jsp");
@@ -56,6 +59,9 @@ public class BoardController extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		
+		
 	}
 
 	/**
@@ -67,3 +73,4 @@ public class BoardController extends HttpServlet {
 	}
 
 }
+

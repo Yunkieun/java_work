@@ -2,6 +2,7 @@ package model_p;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Pattern;
 
 public class BoardDTO {
 	
@@ -28,8 +29,21 @@ public class BoardDTO {
 		this.pw = pw;
 	}
 	public String getUpfile() {
+		
+		if(upfile==null || upfile.trim().equals("") || upfile.trim().equals("null")) {
+			upfile = "";
+		}
+		
 		return upfile;
 	}
+	
+	public boolean isImg() {
+		//앞에 글자 상관없고 .확장자명(소문자, 대문자 상관x)이 오면 됨
+		boolean res = Pattern.matches(".*[.](jpg|bmp|png|gif)", getUpfile().toLowerCase());
+		
+		return res;
+	}
+	
 	public void setUpfile(String upfile) {
 		this.upfile = upfile;
 	}

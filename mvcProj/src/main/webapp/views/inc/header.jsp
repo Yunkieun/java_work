@@ -3,6 +3,7 @@
 <table>
 	<tr>
 		<td colspan="4" width="900px">
+			<!-- 설정된 mainTitle 값으로 출력됨 -->
 			<h1><%=request.getAttribute("mainTitle") %></h1>
 		</td>
 	</tr>
